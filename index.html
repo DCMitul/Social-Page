@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DCMitul — Profile</title>
+  <meta name="description" content="DCMitul — personal profile" />
+  <meta name="author" content="DCMitul" />
+
+  <!-- Tailwind CDN for utilities -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root{
+      --glass: rgba(255,255,255,0.30);
+      --glass-border: rgba(255,255,255,0.36);
+      --card-shadow: 0 12px 32px rgba(2,6,23,0.38);
+      --accent: linear-gradient(90deg,#ff3b3b,#ff8c00,#f7e018,#00d280,#00b3ff,#6b5cff);
+    }
+
+    /* Full-bleed video background */
+    #video-background{
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -20;
+      image-rendering: auto;
+    }
+
+    /* page wrapper on top of video */
+    .page-wrap{
+      min-height: 100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:2rem 1rem;
+      position:relative;
+      z-index:10;
+    }
+
+    /* profile card glass look */
+    .card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--card-shadow);
+      backdrop-filter: blur(6px);
+    }
+
+    /* profile image circle */
+    .pfp{
+      width:10rem;
+      height:10rem;
+      border-radius:9999px;
+      overflow:hidden;
+      box-shadow: 0 10px 30px rgba(2,6,23,0.35);
+      flex-shrink:0;
+    }
+    @media(min-width:768px){ .pfp{ width:11.5rem; height:11.5rem; } }
+
+    /* rainbow text */
+    .rainbow{
+      background: var(--accent);
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: rainbow 4s linear infinite;
+      display:inline-block;
+    }
+    @keyframes rainbow{ 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+
+    /* icon buttons */
+    .icon-btn{
+      transition: transform .14s ease, box-shadow .14s ease;
+      width:48px; height:48px;
+    }
+    .icon-btn:focus{ outline:3px solid rgba(255,255,255,0.6); outline-offset:4px; }
+
+    /* reduced motion preference */
+    @media (prefers-reduced-motion: reduce){
+      .rainbow{ animation:none; }
+      .tilt { transition: none !important; transform: none !important; }
+    }
+  </style>
+</head>
+<body class="antialiased text-slate-800 bg-slate-900">
+
+  <!-- Background video -->
+  <video
+    id="video-background"
+    autoplay muted playsinline preload="auto"
+    poster=""
+    crossorigin="anonymous"
+    loop
+  >
+    <source src="background.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <main class="page-wrap">
+    <section id="profile-card" class="tilt card w-full max-w-xl p-6 md:p-10 rounded-3xl" aria-labelledby="name">
+      <div class="flex flex-col items-center text-center">
+        <div class="pfp mb-6">
+          <img src="pfp.png"
+               alt="Profile picture of DCMitul"
+               class="w-full h-full object-cover"
+               onerror="this.onerror=null;this.src='https://placehold.co/192x192/94A3B8/FFFFFF?text=PFP';"
+               decoding="async" loading="eager">
+        </div>
+
+        <h1 id="name" class="text-4xl md:text-5xl font-extrabold leading-tight">
+          <span class="rainbow">DCMitul</span>
+        </h1>
+
+        <p class="mt-2 text-lg md:text-xl font-medium text-slate-800/80">@dcmitul</p>
+
+        <blockquote class="mt-6 w-full max-w-md p-4 rounded-xl border border-white/30 bg-white/40 text-slate-900/90 italic shadow-inner">
+          "All you need is love, but a little chocolate now and then doesn't hurt."
+        </blockquote>
+
+        <!-- Social links (local svg files from Icons/ folder) -->
+        <nav class="mt-6 w-full flex flex-wrap justify-center gap-3" aria-label="Social links">
+          <a class="icon-btn inline-flex items-center justify-center rounded-full bg-slate-900 text-white shadow-lg"
+             href="https://github.com/DCMitul" target="_blank" rel="noopener noreferrer" aria-label="GitHub — opens in new tab" title="GitHub">
+            <img src="Icons/github.svg" alt="GitHub" class="w-6 h-6" decoding="async" loading="lazy">
+          </a>
+
+          <a class="icon-btn inline-flex items-center justify-center rounded-full bg-[#FF4500] text-white shadow-lg"
+             href="https://www.reddit.com/user/DCMitul/" target="_blank" rel="noopener noreferrer" aria-label="Reddit — opens in new tab" title="Reddit">
+            <img src="Icons/reddit.svg" alt="Reddit" class="w-6 h-6" decoding="async" loading="lazy">
+          </a>
+
+          <a class="icon-btn inline-flex items-center justify-center rounded-full bg-[#ffffff] text-white shadow-lg"
+             href="https://discordapp.com/users/969177471918411816" target="_blank" rel="noopener noreferrer" aria-label="Discord — opens in new tab" title="Discord">
+            <img src="Icons/discord.svg" alt="Discord" class="w-6 h-6" decoding="async" loading="lazy">
+          </a>
+
+          <a class="icon-btn inline-flex items-center justify-center rounded-full shadow-lg"
+             href="https://www.instagram.com/divit984/" target="_blank" rel="noopener noreferrer" aria-label="Instagram — opens in new tab" title="Instagram"
+             style="background: radial-gradient(circle at 30% 30%, #fccc63, #ff7a59 30%, #d6249f 60%, #285AEB 100%); color:white;">
+            <img src="Icons/instagram.svg" alt="Instagram" class="w-6 h-6" decoding="async" loading="lazy">
+          </a>
+
+          <a class="icon-btn inline-flex items-center justify-center rounded-full bg-[#FF0000] text-white shadow-lg"
+             href="https://www.youtube.com/@dcmitul" target="_blank" rel="noopener noreferrer" aria-label="YouTube — opens in new tab" title="YouTube">
+            <img src="Icons/youtube.svg" alt="YouTube" class="w-6 h-6" decoding="async" loading="lazy">
+          </a>
+
+          <a class="icon-btn inline-flex items-center justify-center rounded-full bg-[#10B981] text-white shadow-lg"
+             href="https://social.venge.io/?profile#DCMitul" target="_blank" rel="noopener noreferrer" aria-label="Venge.io — opens in new tab" title="Venge.io">
+            <img src="Icons/venge.svg" alt="Venge" class="w-6 h-6" decoding="async" loading="lazy">
+          </a>
+
+          <a class="icon-btn inline-flex items-center justify-center rounded-full bg-[#7A3E1A] text-white shadow-lg"
+             href="https://www.goodreads.com/dcmitul" target="_blank" rel="noopener noreferrer" aria-label="Goodreads — opens in new tab" title="Goodreads">
+            <img src="Icons/goodreads.svg" alt="Goodreads" class="w-6 h-6" decoding="async" loading="lazy">
+          </a>
+        </nav>
+
+        <p class="mt-8 text-sm text-slate-800/70 font-mono text-center">— Just a personal space —</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function(){
+      // Elements
+      const video = document.getElementById('video-background');
+      const card = document.getElementById('profile-card');
+      const wrapper = document.querySelector('.page-wrap');
+
+      // --- Seamless loop fix ---
+      // When video metadata loads, store duration. Then on timeupdate,
+      // if we're near the end jump to 0 for seamless playback.
+      let duration = 0;
+      video.addEventListener('loadedmetadata', () => {
+        duration = video.duration || 0;
+      });
+
+      video.addEventListener('timeupdate', () => {
+        if (!duration || !isFinite(duration)) return;
+        if (duration - video.currentTime <= 0.06) {
+          video.currentTime = 0;
+          // try to keep it playing
+          if (video.paused) {
+            video.play().catch(()=>{/* ignore autoplay block */});
+          }
+        }
+      }, { passive: true });
+
+      // Try to play on load (some browsers block autoplay if no user gesture)
+      function tryPlay() {
+        video.play().catch(() => {
+          // If blocked, we'll wait for a user interaction (click/tap/key) to start it
+          const resume = () => {
+            video.play().catch(()=>{/* ignore */});
+            window.removeEventListener('pointerdown', resume);
+            window.removeEventListener('keydown', resume);
+            window.removeEventListener('touchstart', resume);
+          };
+          window.addEventListener('pointerdown', resume, { once: true });
+          window.addEventListener('keydown', resume, { once: true });
+          window.addEventListener('touchstart', resume, { once: true });
+        });
+      }
+      // try on load
+      window.addEventListener('load', tryPlay);
+
+      // --- Tilt effect: rAF driven and throttled ---
+      let mouseX = 0, mouseY = 0;
+      let raf = null;
+      let lastMove = 0;
+      const maxTilt = 6;
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function onMove(e){
+        const x = (e.touches ? e.touches[0].clientX : e.clientX);
+        const y = (e.touches ? e.touches[0].clientY : e.clientY);
+        const cx = window.innerWidth / 2;
+        const cy = window.innerHeight / 2;
+        mouseX = (x - cx) / cx;
+        mouseY = (y - cy) / cy;
+        lastMove = performance.now();
+        if (!raf) raf = requestAnimationFrame(update);
+      }
+
+      function clamp(v, a, b){ return Math.max(a, Math.min(b, v)); }
+
+      function update(){
+        if (reduceMotion) { card.style.transform = ''; raf = null; return; }
+        const tiltY = clamp(mouseX * maxTilt, -maxTilt, maxTilt);
+        const tiltX = clamp(-mouseY * maxTilt, -maxTilt, maxTilt);
+        card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+        if (performance.now() - lastMove < 120) {
+          raf = requestAnimationFrame(update);
+        } else {
+          // ease back
+          card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
+          raf = null;
+        }
+      }
+
+      wrapper.addEventListener('mousemove', onMove, { passive: true });
+      wrapper.addEventListener('touchmove', onMove, { passive: true });
+
+      wrapper.addEventListener('mouseleave', () => {
+        if (raf) cancelAnimationFrame(raf);
+        raf = null;
+        card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
+      });
+
+      // Pause the video when the page is hidden to save CPU
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          if (!video.paused) video.pause();
+        } else {
+          // try to resume (if allowed)
+          video.play().catch(()=>{/* ignore */});
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
